@@ -1,7 +1,0 @@
-app:
-  auth:
-    token-secret: devbeekei-token-secret-key
-    token-expiration-time: 1209600000
-  oauth2:
-    authorized-redirect-uris:
-      - http://localhost:8080/auth/token
