@@ -13,7 +13,7 @@ import java.util.Date;
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "user", uniqueConstraints = {
+@Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = "email")
 })
 @SecondaryTables({
@@ -34,9 +34,6 @@ public class User {
 
     @Column(name = "nickname", length = 50, nullable = false)
     private String nickname;
-
-    @Column(name = "tel", length = 20)
-    private String tel;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

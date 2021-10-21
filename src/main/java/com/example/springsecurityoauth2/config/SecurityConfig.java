@@ -1,6 +1,7 @@
 package com.example.springsecurityoauth2.config;
 
 
+import com.example.springsecurityoauth2.security.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -74,14 +75,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(new RestAuthenticationEntryPoint()) // 인증,인가가 되지 않은 요청 시 발생
                 .and()
                 .authorizeRequests()
-                .antMatchers("/auth/**", "/oauth2/**").permitAll() // Security 허용 Url
+                .antMatchers("/auth/token", "/oauth2/**").permitAll() // Security 허용 Url
                 .anyRequest().authenticated() // 그 외엔 모두 인증 필요
                 .and()
                 .oauth2Login()
                 .authorizationEndpoint().baseUri("/oauth2/authorization") // 소셜 로그인 Url
                 .authorizationRequestRepository(cookieOAuth2AuthorizationRequestRepository()) // 인증 요청을 쿠키에 저장하고 검색
                 .and()
-                .redirectionEndpoint().baseUri("/oauth2/callback/*") // 소셜 인증 후 redirect될 url
+                .redirectionEndpoint().baseUri("/oauth2/callback/*") // 소셜 인증 후 Redirect Url
                 .and()
                 .userInfoEndpoint().userService(customOAuth2UserService) // 소셜의 회원 정보를 받아와 가공처리
                 .and()
